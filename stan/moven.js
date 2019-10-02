@@ -1,7 +1,5 @@
 var formHandler = (function($){
     // references to all our inputs so we can do some validation on the front end
-    // also the submit button is starting off as disabled, so we can
-    // add logic to un-disable the button when all conditions are met
     var firstName = $('#first_name');
     var lastName = $('#last_name');
     var homePhone = $('#home_phone');
@@ -18,7 +16,7 @@ var formHandler = (function($){
     var submitButton = $('#submit_button');
 
     var validateInputs = function(){
-        // do some validation on the inputs
+        // do some validation on the input values
     }
 
     var displayErrors = function(){
@@ -27,16 +25,12 @@ var formHandler = (function($){
         // to put the form in a good state
     }
 
-    var enableSubmit = function(){
-        // when conditions are met, enable the submit button
-    }
-
     var submitForm = function(){
         // if button isnt disabled
         // submit the information to OUR server
         $.ajax({
             method: "POST",
-            url: , //localize the ajax url from wp
+            url: FROM_WP.ajax_url, //localize the ajax url from wp
             data: , // package all the data up first
             success: function(){
                 // some success actions
@@ -47,10 +41,23 @@ var formHandler = (function($){
         })
     }
 
+    var handleSubmit = function(){
+        // check for violations
+        var hasErrors = validateInputs();
+        // if some violations display Errors
+        if (hasErrors) {
+            displayErrors();
+            return;
+        }
+
+        // if none submit
+        submitForm();
+    }
+
     var init = function(){
 
         // handle the form
-        submitButton.click(submitForm)
+        submitButton.click(handleSubmit)
     }
 
     return { init: init }

@@ -84,7 +84,9 @@
     <option value="Long-term skilled nursing care/healthcare center">Long-term skilled nursing care/healthcare center</option>
 </select>
 <br/>
-<button disabled='true' id="submit_button">Submit</button>
+<button id="submit_button">Submit</button>
+
+
 <?php
 //get_footer();
 ?>
